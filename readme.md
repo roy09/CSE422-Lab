@@ -1,0 +1,1 @@
+This is my lab submissions for CSE422: Artificial Intelligence class in BRAC University
