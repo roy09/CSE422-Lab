@@ -19,17 +19,7 @@ for x in range(row):
 # building neighbors
 for x in range(row):
     for y in range(col):
-        try:
-            if grid[x + 1][y].pos not in blockedPositions:
-                grid[x][y].add(grid[x + 1][y])
-        except IndexError:
-            pass
-        if x > 0:
-            try:
-                if grid[x - 1][y].pos not in blockedPositions:
-                    grid[x][y].add(grid[x - 1][y])
-            except IndexError:
-                pass
+        # TDRL
         try:
             if grid[x][y + 1].pos not in blockedPositions:
                 grid[x][y].add(grid[x][y + 1])
@@ -39,6 +29,17 @@ for x in range(row):
             try:
                 if grid[x][y - 1].pos not in blockedPositions:
                     grid[x][y].add(grid[x][y - 1])
+            except IndexError:
+                pass
+        try:
+            if grid[x + 1][y].pos not in blockedPositions:
+                grid[x][y].add(grid[x + 1][y])
+        except IndexError:
+            pass
+        if x > 0:
+            try:
+                if grid[x - 1][y].pos not in blockedPositions:
+                    grid[x][y].add(grid[x - 1][y])
             except IndexError:
                 pass
 
@@ -89,7 +90,7 @@ def dfs():
             break
         else:
             for tempNode in currentNode.neighbors:
-                if not tempNode.visited:
+                if not tempNode.visited and tempNode not in path:
                     path.append(tempNode)
                     tempNode.prev = currentNode
 
